@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(dotnet build:*)",
+      "Bash(dotnet new:*)",
+      "Bash(dotnet test:*)",
+      "Bash(curl:*)",
+      "Bash(dotnet clean:*)",
+      "Bash(dir \"C:\\Repos\\app\\Cliente\\Solution1\\Driven.SqlLite\\Migrations\")",
+      "Bash(dir \"C:\\Repos\\app\\Cliente\\Solution1\\Core.Application\")",
+      "Bash(dir:*)",
+      "Bash(printf:*)",
+      "Bash(ANALISE_RESUMO.txt)",
+      "Bash(cat:*)",
+      "Bash(nul)",
+      "Bash(timeout:*)",
+      "Bash(taskkill:*)",
+      "Bash(powershell -Command \"Remove-Item ''C:\\Repos\\app\\Credito\\Driving.Api\\Controllers\\ClientesController.cs'' -Force\")",
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri ''http://localhost:5202/swagger'' -UseBasicParsing 2>&1 | Select-Object -ExpandProperty StatusCode\")",
+      "Bash(powershell -Command:*)",
+      "Bash(awk:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
