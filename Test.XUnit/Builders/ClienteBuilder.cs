@@ -68,3 +68,5 @@ public class ClienteBuilder
         return Cliente.Criar(_nome, _email, _telefone, _cpf, _endereco, _cidade, _estado, _cep);
     }
 }
+
+

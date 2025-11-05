@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Core.Application.Interfaces.Infrastructure;
 using Driven.RabbitMQ.Interfaces;
 using Driven.RabbitMQ.Services;
 using Driven.RabbitMQ.Settings;
@@ -28,6 +29,13 @@ public static class DependencyInjectionExtensions
 
         services.Configure<RabbitMQSettings>(options =>
             rabbitMqSection.Bind(options));
+
+        // Registra as configurações de filas
+        services.AddSingleton<IRabbitMQQueuesSettings>(sp =>
+        {
+            var settings = sp.GetRequiredService<IOptions<RabbitMQSettings>>();
+            return settings.Value.Queues;
+        });
 
         // Registra a factory de conexão como Singleton (uma única conexão)
         services.AddSingleton<IMessageBus, RabbitMQConnectionFactory>();

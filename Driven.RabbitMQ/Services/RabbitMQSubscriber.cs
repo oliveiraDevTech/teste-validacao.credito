@@ -54,8 +54,7 @@ public class RabbitMQSubscriber : IMessageSubscriber
                         _messageBus.Channel.BasicAck(ea.DeliveryTag, false);
                     }
                 }
-                catch (Exception ex)
-                {
+                catch (Exception) {
                     // Rejeita a mensagem e a recoloca na fila
                     _messageBus.Channel.BasicNack(ea.DeliveryTag, false, true);
                     throw;
@@ -126,8 +125,7 @@ public class RabbitMQSubscriber : IMessageSubscriber
                         _messageBus.Channel.BasicAck(ea.DeliveryTag, false);
                     }
                 }
-                catch (Exception ex)
-                {
+                catch (Exception) {
                     // Rejeita a mensagem e a recoloca na fila
                     _messageBus.Channel.BasicNack(ea.DeliveryTag, false, true);
                     throw;
@@ -153,3 +151,4 @@ public class RabbitMQSubscriber : IMessageSubscriber
         }
     }
 }
+

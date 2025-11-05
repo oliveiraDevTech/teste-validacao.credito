@@ -156,6 +156,31 @@ try
     if (messageBus?.TryConnect() ?? false)
     {
         Console.WriteLine("✅ RabbitMQ conectado com sucesso");
+
+        // ========== INICIALIZAR CONSUMIDORES DE EVENTOS ==========
+
+        var subscriber = app.Services.GetRequiredService<IMessageSubscriber>();
+        var handler = app.Services.GetRequiredService<Core.Application.Handlers.ClienteCadastradoEventHandler>();
+        var logger = app.Services.GetRequiredService<Microsoft.Extensions.Logging.ILogger<Program>>();
+
+        // Subscrever ao evento de cadastro de cliente
+        // Consumir eventos da fila "cliente.cadastrado"
+        try
+        {
+            await subscriber.SubscribeAsync<Core.Domain.Events.ClienteCadastradoIntegrationEvent>(
+                queueName: "cliente.cadastrado",
+                handler: async (evento) =>
+                {
+                    logger.LogInformation("Evento ClienteCadastradoIntegrationEvent recebido para cliente {ClienteId}", evento.ClienteId);
+                    await handler.HandleAsync(evento);
+                });
+
+            Console.WriteLine("✅ Consumer de ClienteCadastradoIntegrationEvent inicializado");
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Erro ao inicializar consumer de ClienteCadastradoIntegrationEvent");
+        }
     }
 }
 catch (InvalidOperationException ex)
@@ -167,6 +192,24 @@ catch (Exception ex)
 {
     Console.WriteLine($"⚠️  Aviso: Erro ao conectar ao RabbitMQ: {ex.Message}");
     Console.WriteLine("A aplicação continuará funcionando sem mensageria.");
+}
+
+// ========== REGISTRAR HANDLER DE EVENTOS NO CONTAINER DI ==========
+
+// Adicionar serviço para resolver o handler
+using (var scope = app.Services.CreateScope())
+{
+    var sp = scope.ServiceProvider;
+    try
+    {
+        // Registrar o handler se não estiver registrado
+        // Este é um padrão temporário - em produção, usar injeção apropriada
+        sp.GetRequiredService<Core.Application.Handlers.ClienteCadastradoEventHandler>();
+    }
+    catch
+    {
+        // Ignorar se falhar durante startup
+    }
 }
 
 app.Run();

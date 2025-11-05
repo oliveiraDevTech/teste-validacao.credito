@@ -1,6 +1,6 @@
 using System.Text;
 using System.Text.Json;
-using Driven.RabbitMQ.Interfaces;
+using Core.Application.Interfaces.Infrastructure;
 using RabbitMQ.Client;
 
 namespace Driven.RabbitMQ.Services;

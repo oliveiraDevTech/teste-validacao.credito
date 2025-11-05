@@ -41,7 +41,7 @@ public class BaseRepositoryTests
         // Assert
         var clienteRecuperado = await _context.Clientes.FirstOrDefaultAsync(c => c.Id == cliente.Id);
         clienteRecuperado.Should().NotBeNull();
-        clienteRecuperado.Nome.Should().Be(cliente.Nome);
+        clienteRecuperado!.Nome.Should().Be(cliente.Nome);
     }
 
     [Fact]
@@ -67,7 +67,7 @@ public class BaseRepositoryTests
 
         // Assert
         resultado.Should().NotBeNull();
-        resultado.Id.Should().Be(cliente.Id);
+        resultado!.Id.Should().Be(cliente.Id);
     }
 
     [Fact]
@@ -86,9 +86,9 @@ public class BaseRepositoryTests
         // Arrange
         var clientes = new List<Cliente>
         {
-            Cliente.Criar("Cliente 1", "cliente1@example.com", "11987654321", "123.456.789-10",
+            Cliente.Criar("Cliente 1", "cliente1@example.com", "11987654321", "111.444.777-35",
                 "Rua 1", "São Paulo", "SP", "01234-567"),
-            Cliente.Criar("Cliente 2", "cliente2@example.com", "11987654322", "123.456.789-11",
+            Cliente.Criar("Cliente 2", "cliente2@example.com", "11987654322", "529.982.247-25",
                 "Rua 2", "Rio de Janeiro", "RJ", "01234-568")
         };
 
@@ -106,9 +106,9 @@ public class BaseRepositoryTests
     public async Task GetAllActive_DeveRetornarApenasClientesAtivos()
     {
         // Arrange
-        var cliente1 = Cliente.Criar("Cliente 1", "cliente1@example.com", "11987654321", "123.456.789-10",
+        var cliente1 = Cliente.Criar("Cliente 1", "cliente1@example.com", "11987654321", "111.444.777-35",
             "Rua 1", "São Paulo", "SP", "01234-567");
-        var cliente2 = Cliente.Criar("Cliente 2", "cliente2@example.com", "11987654322", "123.456.789-11",
+        var cliente2 = Cliente.Criar("Cliente 2", "cliente2@example.com", "11987654322", "529.982.247-25",
             "Rua 2", "Rio de Janeiro", "RJ", "01234-568");
 
         cliente2.Desativar();
@@ -151,8 +151,8 @@ public class BaseRepositoryTests
 
         // Assert
         var clienteAtualizado = await _context.Clientes.FirstOrDefaultAsync(c => c.Id == cliente.Id);
-        clienteAtualizado.Nome.Should().Be("João Silva Santos");
-        clienteAtualizado.Email.Should().Be("joao.santos@example.com");
+        clienteAtualizado!.Nome.Should().Be("João Silva Santos");
+        clienteAtualizado!.Email.Should().Be("joao.santos@example.com");
     }
 
     [Fact]
@@ -207,7 +207,7 @@ public class BaseRepositoryTests
 
         // Assert
         var clienteDesativado = await _context.Clientes.FirstOrDefaultAsync(c => c.Id == cliente.Id);
-        clienteDesativado.Ativo.Should().BeFalse();
+        clienteDesativado!.Ativo.Should().BeFalse();
     }
 
     [Fact]
@@ -251,9 +251,9 @@ public class BaseRepositoryTests
         // Arrange
         var clientes = new List<Cliente>
         {
-            Cliente.Criar("Cliente 1", "cliente1@example.com", "11987654321", "123.456.789-10",
+            Cliente.Criar("Cliente 1", "cliente1@example.com", "11987654321", "111.444.777-35",
                 "Rua 1", "São Paulo", "SP", "01234-567"),
-            Cliente.Criar("Cliente 2", "cliente2@example.com", "11987654322", "123.456.789-11",
+            Cliente.Criar("Cliente 2", "cliente2@example.com", "11987654322", "529.982.247-25",
                 "Rua 2", "Rio de Janeiro", "RJ", "01234-568")
         };
 
@@ -271,9 +271,9 @@ public class BaseRepositoryTests
     public async Task CountActiveAsync_DeveRetornarQuantidadeDeClientesAtivos()
     {
         // Arrange
-        var cliente1 = Cliente.Criar("Cliente 1", "cliente1@example.com", "11987654321", "123.456.789-10",
+        var cliente1 = Cliente.Criar("Cliente 1", "cliente1@example.com", "11987654321", "111.444.777-35",
             "Rua 1", "São Paulo", "SP", "01234-567");
-        var cliente2 = Cliente.Criar("Cliente 2", "cliente2@example.com", "11987654322", "123.456.789-11",
+        var cliente2 = Cliente.Criar("Cliente 2", "cliente2@example.com", "11987654322", "529.982.247-25",
             "Rua 2", "Rio de Janeiro", "RJ", "01234-568");
 
         cliente2.Desativar();
@@ -288,3 +288,6 @@ public class BaseRepositoryTests
         quantidade.Should().Be(1);
     }
 }
+
+
+

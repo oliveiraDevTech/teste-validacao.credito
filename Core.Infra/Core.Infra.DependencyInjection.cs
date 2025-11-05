@@ -31,6 +31,9 @@ public static class DependencyInjectionExtensions
             configuration.GetSection("Email:Smtp").Bind(options));
         services.AddScoped<IEmailService, SmtpEmailService>();
 
+        // Credit Analysis - Novo serviço para scoring de crédito
+        services.AddSingleton<ICreditoScoringService, CreditoScoringService>();
+
         return services;
     }
 

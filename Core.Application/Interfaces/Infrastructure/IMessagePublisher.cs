@@ -1,4 +1,4 @@
-namespace Driven.RabbitMQ.Interfaces;
+namespace Core.Application.Interfaces.Infrastructure;
 
 /// <summary>
 /// Interface para publicar mensagens no RabbitMQ

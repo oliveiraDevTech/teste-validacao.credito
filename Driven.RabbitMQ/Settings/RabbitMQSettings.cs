@@ -1,3 +1,5 @@
+using Core.Application.Interfaces.Infrastructure;
+
 namespace Driven.RabbitMQ.Settings;
 
 /// <summary>
@@ -44,4 +46,30 @@ public class RabbitMQSettings
     /// Delay entre tentativas em milissegundos
     /// </summary>
     public int RetryDelay { get; set; } = 1000;
+
+    /// <summary>
+    /// Configurações de filas do RabbitMQ
+    /// </summary>
+    public RabbitMQQueuesSettings Queues { get; set; } = new();
+}
+
+/// <summary>
+/// Configurações de filas do RabbitMQ
+/// </summary>
+public class RabbitMQQueuesSettings : IRabbitMQQueuesSettings
+{
+    /// <summary>
+    /// Fila para eventos de cliente cadastrado (recebido do serviço de Clientes)
+    /// </summary>
+    public string ClienteCadastrado { get; set; } = "cliente.cadastrado";
+
+    /// <summary>
+    /// Fila para eventos de análise de crédito completa (enviado para serviço de Clientes)
+    /// </summary>
+    public string AnaliseCreditoComplete { get; set; } = "analise.credito.complete";
+
+    /// <summary>
+    /// Fila para eventos de análise de crédito falhou (enviado para serviço de Clientes)
+    /// </summary>
+    public string AnaliseCreditoFalha { get; set; } = "analise.credito.falha";
 }

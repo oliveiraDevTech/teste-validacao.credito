@@ -1,11 +1,13 @@
 // Domain
 global using Core.Domain.Common;
 global using Core.Domain.Entities;
+global using Core.Domain.Events;
 
 // DTOs
 global using Core.Application.DTOs;
 
 // Interfaces
+global using Core.Application.Interfaces.Infrastructure;
 global using Core.Application.Interfaces.Repositories;
 global using Core.Application.Interfaces.Services;
 

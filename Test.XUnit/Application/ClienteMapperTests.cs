@@ -13,7 +13,7 @@ public class ClienteMapperTests
             "João Silva",
             "joao@example.com",
             "11987654321",
-            "123.456.789-10",
+            "111.444.777-35",
             "Rua das Flores, 123",
             "São Paulo",
             "SP",
@@ -45,7 +45,7 @@ public class ClienteMapperTests
             "João Silva",
             "joao@example.com",
             "11987654321",
-            "123.456.789-10",
+            "111.444.777-35",
             "Rua das Flores, 123",
             "São Paulo",
             "SP",
@@ -74,7 +74,7 @@ public class ClienteMapperTests
             Nome = "João Silva",
             Email = "joao@example.com",
             Telefone = "11987654321",
-            Cpf = "123.456.789-10",
+            Cpf = "111.444.777-35",
             Endereco = "Rua das Flores, 123",
             Cidade = "São Paulo",
             Estado = "SP",
@@ -104,7 +104,7 @@ public class ClienteMapperTests
             "João Silva",
             "joao@example.com",
             "11987654321",
-            "123.456.789-10",
+            "111.444.777-35",
             "Rua das Flores, 123",
             "São Paulo",
             "SP",
@@ -142,9 +142,9 @@ public class ClienteMapperTests
         // Arrange
         var clientes = new List<Cliente>
         {
-            Cliente.Criar("Cliente 1", "cliente1@example.com", "11987654321", "123.456.789-10",
+            Cliente.Criar("Cliente 1", "cliente1@example.com", "11987654321", "111.444.777-35",
                 "Rua 1", "São Paulo", "SP", "01234-567"),
-            Cliente.Criar("Cliente 2", "cliente2@example.com", "11987654322", "123.456.789-11",
+            Cliente.Criar("Cliente 2", "cliente2@example.com", "11987654322", "529.982.247-25",
                 "Rua 2", "São Paulo", "SP", "01234-568")
         };
 
@@ -162,9 +162,9 @@ public class ClienteMapperTests
         // Arrange
         var clientes = new List<Cliente>
         {
-            Cliente.Criar("Cliente 1", "cliente1@example.com", "11987654321", "123.456.789-10",
+            Cliente.Criar("Cliente 1", "cliente1@example.com", "11987654321", "111.444.777-35",
                 "Rua 1", "São Paulo", "SP", "01234-567"),
-            Cliente.Criar("Cliente 2", "cliente2@example.com", "11987654322", "123.456.789-11",
+            Cliente.Criar("Cliente 2", "cliente2@example.com", "11987654322", "529.982.247-25",
                 "Rua 2", "São Paulo", "SP", "01234-568")
         };
 
@@ -176,3 +176,5 @@ public class ClienteMapperTests
         dtos.Should().AllSatisfy(d => d.Should().BeOfType<ClienteListDto>());
     }
 }
+
+
